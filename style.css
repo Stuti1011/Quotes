@@ -1,0 +1,477 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.5s;
+            position: relative;
+            cursor: default;
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, #1e1e2f 0%, #3730a3 100%);
+            color: #fff;
+        }
+
+        /* Global Ripple Effect */
+        .ripple {
+            position: absolute;
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ripple 0.6s linear;
+        }
+
+        @keyframes ripple {
+            0% { width: 0; height: 0; opacity: 0.5; }
+            100% { width: 100px; height: 100px; opacity: 0; }
+        }
+
+        /* Loader */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader::before {
+            content: '';
+            width: 60px;
+            height: 60px;
+            border: 6px solid #6b7280;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+        }
+
+        .navbar a {
+            color: #1e1e2f;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .dark-mode .navbar a {
+            color: #e0e7ff;
+        }
+
+        .navbar a:hover {
+            color: #6366f1;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            padding: 12px 20px;
+            width: 300px;
+            border: 2px solid #6366f1;
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+            transition: width 0.3s, box-shadow 0.3s;
+        }
+
+        .search-bar input:focus {
+            width: 350px;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        
+
+        /* Quote Carousel */
+        .quote-carousel {
+            position: relative;
+            height: 400px;
+            perspective: 1000px;
+            user-select: none;
+        }
+
+        .quote-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px) rotateX(20deg);
+            transition: all 0.5s ease;
+            cursor: move;
+            user-select: none;
+        }
+
+        .dark-mode .quote-card {
+            background: rgba(30, 30, 47, 0.95);
+        }
+
+        .quote-card.active {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+            z-index: 10;
+        }
+
+        .quote-card h2 {
+            font-size: 26px;
+            color: #1e1e2f;
+            margin-bottom: 15px;
+        }
+
+        .dark-mode .quote-card h2 {
+            color: #e0e7ff;
+        }
+
+        .quote-card p {
+            font-size: 16px;
+            color: #4b5563;
+        }
+
+        .dark-mode .quote-card p {
+            color: #d1d5db;
+        }
+
+        .quote-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .quote-actions button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .quote-actions button:hover {
+            transform: scale(1.2);
+            color: #6366f1;
+        }
+
+        .quote-actions .liked {
+            color: #ef4444;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 5px;
+        }
+
+        .star-rating i {
+            cursor: pointer;
+            color: #d1d5db;
+            transition: color 0.2s;
+        }
+
+        .star-rating .rated {
+            color: #f59e0b;
+        }
+
+        .quote-card.active:hover {
+  transform: translateY(-5px) rotateX(0);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+        .star-rating i:hover,
+.star-rating i:hover ~ i {
+  color: #fbbf24;
+}
+        .quote-author-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+        /* Ripple Effect Button */
+        .ripple-btn {
+            position: relative;
+            padding: 15px 30px;
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            border-radius: 45px;
+            cursor: pointer;
+            overflow: hidden;
+            margin: 8px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 14px;
+        }
+
+        .ripple-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .ripple-btn span {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        /* Quote Submission Form */
+        .quote-form {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 50px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+        }
+
+        .dark-mode .quote-form {
+            background: rgba(30, 30, 47, 0.95);
+        }
+
+        .quote-form.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quote-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1e1e2f;
+        }
+
+        .dark-mode .quote-form h2 {
+            color: #e0e7ff;
+        }
+
+        .quote-form input,
+        .quote-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #d1d5db;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .quote-form input:focus,
+        .quote-form textarea:focus {
+            border-color: #6366f1;
+        }
+
+        .quote-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .quote-preview {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            min-height: 100px;
+        }
+
+        .dark-mode .quote-preview {
+            background: rgba(30, 30, 47, 0.8);
+        }
+
+        /* Parallax Section */
+        .parallax-section {
+            height: 400px;
+            background: url('https://source.unsplash.com/random/1200x400?inspiration') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 50px 0;
+        }
+
+        .parallax-section h2 {
+            font-size: 48px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            transform: translateZ(50px);
+        }
+
+        /* Customer Section */
+        .customer-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .customer-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px 20px; /* increased vertical padding */
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s ease;
+  min-height: 320px; /* added minimum height */
+}
+
+        .dark-mode .customer-card {
+            background: #2a2a3d;
+        }
+
+        .customer-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .customer-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .customer-card .rating {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #fbbf24; /* golden star color */
+}
+
+        .dark-mode .customer-card .rating {
+  color: #facc15; /* brighter in dark mode */
+}
+
+        /* Scroll Pop-up Effect */
+        .pop-up {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s ease;
+        }
+
+        .pop-up.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Striking Objects Animation */
+        .striking-box {
+            width: 100%;
+            height: 200px;
+            background: #6366f1;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            margin: 50px 0;
+        }
+
+        .striking-object {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            border-radius: 50%;
+            animation: strike 3s infinite ease-in-out;
+        }
+
+        @keyframes strike {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(1000px, 100px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px)  {
+            .navbar {
+                padding: 20px;
+            }
+
+            .quote-card {
+                padding: 20px;
+            }
+
+            .parallax-section h2 {
+                font-size: 32px;
+            }
+
+            .search-bar input {
+                width: 250px;
+            }
+
+            .search-bar input:focus {
+                width: 280px;
+            }
+          }

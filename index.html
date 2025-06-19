@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Quote Wall</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#submit">Submit Your Quote</a>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Search Bar and Random Quote Button -->
+        <div class="search-bar">
+            <input type="text" id="quote-search" placeholder="Search quotes...">
+            <button class="ripple-btn" onclick="showRandomQuote()">Random Quote</button>
+        </div>
+
+        <!-- Color Changer -->
+        <div class="color-changer">
+            <button class="color-btn" style="background: #c7d2fe;" data-gradient="linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)"></button>
+            <button class="color-btn" style="background: #a5b4fc;" data-gradient="linear-gradient(135deg, #a5b4fc 0%, #6366f1 100%)"></button>
+            <button class="color-btn" style="background: #f9a8d4;" data-gradient="linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%)"></button>
+        </div>
+
+        <!-- Quote Carousel -->
+<div class="quote-carousel" id="quote-carousel">
+
+  <div class="quote-card active" data-quote="The only way to do great work is to love what you do." data-author="Steve Jobs" draggable="true">
+    <img class="quote-author-img" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Steve Jobs">
+    <h2>"The only way to do great work is to love what you do."</h2>
+    <p>- Steve Jobs</p>
+    <div class="star-rating" data-rating="0">
+      <i class="far fa-star" data-value="1"></i>
+      <i class="far fa-star" data-value="2"></i>
+      <i class="far fa-star" data-value="3"></i>
+      <i class="far fa-star" data-value="4"></i>
+      <i class="far fa-star" data-value="5"></i>
+    </div>
+    <div class="quote-actions">
+      <button class="like-btn"><i class="far fa-heart"></i></button>
+      <button class="share-btn"><i class="fas fa-share-alt"></i></button>
+    </div>
+  </div>
+
+  <div class="quote-card" data-quote="Life is what happens when you're busy making other plans." data-author="John Lennon" draggable="true">
+    <img class="quote-author-img" src="https://randomuser.me/api/portraits/men/55.jpg" alt="John Lennon">
+    <h2>"Life is what happens when you're busy making other plans."</h2>
+    <p>- John Lennon</p>
+    <div class="star-rating" data-rating="0">
+      <i class="far fa-star" data-value="1"></i>
+      <i class="far fa-star" data-value="2"></i>
+      <i class="far fa-star" data-value="3"></i>
+      <i class="far fa-star" data-value="4"></i>
+      <i class="far fa-star" data-value="5"></i>
+    </div>
+    <div class="quote-actions">
+      <button class="like-btn"><i class="far fa-heart"></i></button>
+      <button class="share-btn"><i class="fas fa-share-alt"></i></button>
+    </div>
+  </div>
+
+  <div class="quote-card" data-quote="Stay hungry, stay foolish." data-author="Steve Jobs" draggable="true">
+    <img class="quote-author-img" src="https://randomuser.me/api/portraits/men/65.jpg" alt="Steve Jobs">
+    <h2>"Stay hungry, stay foolish."</h2>
+    <p>- Steve Jobs</p>
+    <div class="star-rating" data-rating="0">
+      <i class="far fa-star" data-value="1"></i>
+      <i class="far fa-star" data-value="2"></i>
+      <i class="far fa-star" data-value="3"></i>
+      <i class="far fa-star" data-value="4"></i>
+      <i class="far fa-star" data-value="5"></i>
+    </div>
+    <div class="quote-actions">
+      <button class="like-btn"><i class="far fa-heart"></i></button>
+      <button class="share-btn"><i class="fas fa-share-alt"></i></button>
+    </div>
+  </div>
+
+  <div class="quote-card" data-quote="Believe you can and you're halfway there." data-author="Theodore Roosevelt" draggable="true">
+    <img class="quote-author-img" src="https://randomuser.me/api/portraits/men/91.jpg" alt="Theodore Roosevelt">
+    <h2>"Believe you can and you're halfway there."</h2>
+    <p>- Theodore Roosevelt</p>
+    <div class="star-rating" data-rating="0">
+      <i class="far fa-star" data-value="1"></i>
+      <i class="far fa-star" data-value="2"></i>
+      <i class="far fa-star" data-value="3"></i>
+      <i class="far fa-star" data-value="4"></i>
+      <i class="far fa-star" data-value="5"></i>
+    </div>
+    <div class="quote-actions">
+      <button class="like-btn"><i class="far fa-heart"></i></button>
+      <button class="share-btn"><i class="fas fa-share-alt"></i></button>
+    </div>
+  </div>
+
+  <div class="quote-card" data-quote="Success is not final, failure is not fatal: It is the courage to continue that counts." data-author="Winston Churchill" draggable="true">
+    <img class="quote-author-img" src="https://randomuser.me/api/portraits/men/12.jpg" alt="Winston Churchill">
+    <h2>"Success is not final, failure is not fatal: It is the courage to continue that counts."</h2>
+    <p>- Winston Churchill</p>
+    <div class="star-rating" data-rating="0">
+      <i class="far fa-star" data-value="1"></i>
+      <i class="far fa-star" data-value="2"></i>
+      <i class="far fa-star" data-value="3"></i>
+      <i class="far fa-star" data-value="4"></i>
+      <i class="far fa-star" data-value="5"></i>
+    </div>
+    <div class="quote-actions">
+      <button class="like-btn"><i class="far fa-heart"></i></button>
+      <button class="share-btn"><i class="fas fa-share-alt"></i></button>
+    </div>
+  </div>
+
+  <div class="quote-card" data-quote="Happiness is not something ready made. It comes from your own actions." data-author="Dalai Lama" draggable="true">
+    <img class="quote-author-img" src="https://randomuser.me/api/portraits/men/86.jpg" alt="Dalai Lama">
+    <h2>"Happiness is not something ready made. It comes from your own actions."</h2>
+    <p>- Dalai Lama</p>
+    <div class="star-rating" data-rating="0">
+      <i class="far fa-star" data-value="1"></i>
+      <i class="far fa-star" data-value="2"></i>
+      <i class="far fa-star" data-value="3"></i>
+      <i class="far fa-star" data-value="4"></i>
+      <i class="far fa-star" data-value="5"></i>
+    </div>
+    <div class="quote-actions">
+      <button class="like-btn"><i class="far fa-heart"></i></button>
+      <button class="share-btn"><i class="fas fa-share-alt"></i></button>
+    </div>
+  </div>
+
+</div>
+
+
+        <!-- Ripple Effect Buttons -->
+        <div style="text-align: center;">
+            <button class="ripple-btn" onclick="document.getElementById('quote-form').scrollIntoView({behavior: 'smooth'})">Submit Your Quote</button>
+            <button class="ripple-btn" onclick="showNextQuote()">Next Quote</button>
+        </div>
+
+        <!-- Quote Submission Form -->
+        <div class="quote-form pop-up" id="quote-form">
+            <h2>Submit Your Quote</h2>
+            <input type="text" id="quote-text" placeholder="Enter your quote..." required>
+            <input type="text" id="quote-author" placeholder="Enter author name..." required>
+            <textarea id="quote-description" placeholder="Add a description (optional)..."></textarea>
+            <div class="quote-preview">
+                <h3>Preview</h3>
+                <p id="preview-text">"Your quote will appear here..."</p>
+                <p id="preview-author">- Author</p>
+                <p id="preview-description"></p>
+            </div>
+            <button class="ripple-btn" onclick="submitQuote()">Submit Quote</button>
+        </div>
+
+        <!-- Striking Objects Box -->
+        <div class="striking-box">
+            <div class="striking-object" style="animation-delay: 0s;"></div>
+            <div class="striking-object" style="animation-delay: 1s;"></div>
+            <div class="striking-object" style="animation-delay: 2s;"></div>
+        </div>
+
+        <!-- Parallax Section -->
+        <div class="parallax-section pop-up">
+            <h2>Find Your Inspiration</h2>
+        </div>
+
+        <!-- Customer Section -->
+<div class="customer-section">
+  <div class="customer-card pop-up">
+    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Customer">
+    <h3>Jane Doe</h3>
+    <p>"This quote wall inspires me daily!"</p>
+    <div class="rating">⭐ ⭐ ⭐ ⭐ ⭐</div>
+  </div>
+  <div class="customer-card pop-up">
+    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Customer">
+    <h3>John Smith</h3>
+    <p>"Love the animations and design!"</p>
+    <div class="rating">⭐ ⭐ ⭐ ⭐</div>
+  </div>
+  <div class="customer-card pop-up">
+    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Customer">
+    <h3>Emily Brown</h3>
+    <p>"Submitting quotes is so fun!"</p>
+    <div class="rating">⭐ ⭐ ⭐ ⭐ ⭐</div>
+  </div>
+</div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2023 Personal Quote Wall. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
