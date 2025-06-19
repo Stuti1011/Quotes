@@ -6,17 +6,28 @@
         }
 
         body {
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            transition: background 0.5s;
-            position: relative;
-            cursor: default;
+            background: linear-gradient(to bottom,  #fde2f3, #f3d9ff, #e9d5ff, #fbd3e9);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.5s;
+  position: relative;
+  cursor: default;
+  color: #1e1e2f;
         }
 
+        @keyframes gradientBG {
+  0% { background-position: 50% 0%; }
+  50% { background-position: 50% 100%; }
+  100% { background-position: 50% 0%; }
+}
+
         .dark-mode {
-            background: linear-gradient(135deg, #1e1e2f 0%, #3730a3 100%);
-            color: #fff;
+            background: linear-gradient(to bottom, #0f172a, #1e293b, #1e40af, #312e81);
+  background-size: 100% 400%;
+  animation: gradientBG 12s ease infinite;
+  color: #ffffff;
         }
 
         /* Global Ripple Effect */
@@ -33,39 +44,64 @@
             100% { width: 100px; height: 100px; opacity: 0; }
         }
 
-        /* Loader */
         .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.5s;
-        }
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #fde2f3, #f3d9ff, #e9d5ff, #fbd3e9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
 
-        .loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
+.loader-spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ddd;
+  border-top: 6px solid #6366f1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
 
-        .loader::before {
-            content: '';
-            width: 60px;
-            height: 60px;
-            border: 6px solid #6b7280;
-            border-top-color: #6366f1;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+.loader p {
+  font-size: 1.2rem;
+  color: #6b21a8;
+  font-weight: 600;
+}
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+body.loaded .loader {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  animation: popIn 1s ease-out;
+  object-fit: contain;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 
         /* Navbar */
         .navbar {
@@ -259,7 +295,7 @@
         .ripple-btn {
             position: relative;
             padding: 15px 30px;
-            background: #6366f1;
+            background: #888ace;
             color: #fff;
             border: none;
             border-radius: 45px;
@@ -475,3 +511,48 @@
                 width: 280px;
             }
           }
+
+          .floating-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-background span {
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 50%;
+  animation: float 20s linear infinite;
+  top: 100%;
+  left: calc(10% * var(--i));
+  animation-delay: calc(-2s * var(--i));
+}
+
+.floating-background span:nth-child(1) { --i: 1; }
+.floating-background span:nth-child(2) { --i: 2; }
+.floating-background span:nth-child(3) { --i: 3; }
+.floating-background span:nth-child(4) { --i: 4; }
+.floating-background span:nth-child(5) { --i: 5; }
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-500px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-1000px) scale(0.8);
+    opacity: 0;
+  }
+}
